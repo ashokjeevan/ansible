@@ -32,3 +32,9 @@ Refer: `https://docs.ansible.com/ansible/latest/collections/ansible/builtin/yum_
 **Playbooks**
 
 Create `filename.yml` and run: `ansible-playbook filename.yml -u ec2-user`
+
+Sep 8 2023
+
+To gather facts about an EC2
+`ansible all -m gather_facts --limit <ip_address> -u ec2-user`
+

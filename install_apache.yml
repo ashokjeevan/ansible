@@ -3,10 +3,10 @@
 - hosts: all
   become: true
   tasks:
-  - name: Update packages
+  - name: Install Apache and PHP packages to Amazon Linux EC2 and update cache
     yum:
-      update_cache: yes
-  - name: Install Apache to Amazon Linux EC2
-    yum:
-      name: httpd
+      name: 
+        - httpd
+        - php
       state: latest
+      update_cache: yes
