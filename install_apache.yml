@@ -4,9 +4,9 @@
   become: true
   tasks:
   - name: Install Apache and PHP packages to Amazon Linux EC2 and update cache
-    yum:
+    package:
       name: 
-        - httpd
-        - php
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
       state: latest
       update_cache: yes

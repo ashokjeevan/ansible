@@ -38,3 +38,8 @@ Sep 8 2023
 To gather facts about an EC2
 `ansible all -m gather_facts --limit <ip_address> -u ec2-user`
 
+**Variables**
+When using variables in playbook, use `"{{ <variable> }}"`
+This variable is initialized in the `inventory` file alongside each entries.
+
+Instead of an OS specific package manager, we can use `package` module in Ansible (generic package manager). This will use whatever package manager the target server uses.
