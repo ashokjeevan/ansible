@@ -1,9 +1,20 @@
 ---
 
-- hosts: all
+- hosts: web-server
   become: true
   tasks:
-  - name: Install Apache and PHP packages to Amazon Linux EC2 and update cache
+  - name: Install Apache and PHP packages to web server
+    package:
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+      state: latest
+      update_cache: yes
+
+- hosts: rds-server
+  become: true
+  tasks:
+  - name: Install Apache and PHP packages to RDS server
     package:
       name: 
         - "{{ apache_package }}"

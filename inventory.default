@@ -1,2 +1,5 @@
+[web-server]
 9x.xxx.xx.xx apache_package=httpd php_package=php
+
+[rds-server]
 9.9.xx.xx apache_package=httpd php_package=php
