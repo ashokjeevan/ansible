@@ -35,11 +35,51 @@ Create `filename.yml` and run: `ansible-playbook filename.yml -u ec2-user`
 
 Sep 8 2023
 
-To gather facts about an EC2
-`ansible all -m gather_facts --limit <ip_address> -u ec2-user`
+To gather facts about an EC2:
 
+`ansible all -m gather_facts --limit <ip_address> -u ec2-user`
+<br>
+<br>
 **Variables**
+
 When using variables in playbook, use `"{{ <variable> }}"`
 This variable is initialized in the `inventory` file alongside each entries.
 
 Instead of an OS specific package manager, we can use `package` module in Ansible (generic package manager). This will use whatever package manager the target server uses.
+
+Sep 11 2023
+Grouping nodes together in inventory file.
+
+Eg: 
+<br>
+```
+[web-server]
+99.99.99.99
+123.123.123.123
+
+[rds-server]
+49.49.49.49
+143.143.143.143
+```
+
+In playbook, refer to the above groups as:
+Eg:
+```
+- hosts: web-server
+  *******
+  *******
+- hosts: rds-server
+  *******
+  *******
+```
+
+**List tags**
+
+**Note:** OS versions used in the `install_apache_using_tags.yml` are not correct. Only look at the usage of the tag.
+
+`ansible-playbook --list-tags <playbook.yml>`
+
+**Applying tag based playbook**
+
+`ansible-playbook --tags "tag1,tag2" -u ec2-user`
+
