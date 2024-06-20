@@ -1,0 +1,27 @@
+---
+
+- hosts: web-server
+  become: true
+  tasks:
+  - name: Install Apache and PHP packages to web server
+    tags: apache2,php,ubuntu
+    package:
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+      state: latest
+      update_cache: yes
+      when: ansible_distribution == "CentOS"
+
+- hosts: rds-server
+  become: true
+  tasks:
+  - name: Install Apache and PHP packages to RDS server
+    tags: centos,mariadb
+    package:
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+      state: latest
+      update_cache: yes
+      when: ansible_distribution == "Ubuntu"
