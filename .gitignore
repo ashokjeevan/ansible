@@ -1,1 +1,4 @@
 .venv/
+ansible.cfg.default
+*.pem
+inventory
