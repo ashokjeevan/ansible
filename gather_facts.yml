@@ -1,0 +1,41 @@
+- name: gather facts about servers
+  hosts:  web_servers
+  vars:
+    ansible_user: ec2-user
+    softwares:
+      - nginx
+      - httpd
+      - curl
+      - wget
+
+  tasks:
+    - name: show_ansible_os_family
+      debug:
+        msg: "{{ ansible_os_family }}"
+
+    - name: Install latest httpd version
+      ansible.builtin.yum:
+        name: httpd
+        state: latest
+
+    - name: Start httpd
+      service:
+        name: httpd
+        state: started
+
+    - name: Looping over items - type 1
+      debug:
+        msg: "{{ item }}"
+      loop:
+        - nginx
+        - httpd
+        - curl
+        - wget
+
+    - name: Looping over items - type 2
+      debug:
+        msg: "{{ software_name }} is present at {{ index }}"
+      loop: "{{ softwares }}"
+      loop_control:
+        index_var: index
+        loop_var: software_name # can change the name of the looping item using this attribute
