@@ -101,25 +101,33 @@ ansible [pattern] -m [module] -a "[module options]"
 ansible web_servers -m ansible.builtin.copy -a "src=remove_apache.yml dest=/tmp/hosts" -u ec2-user -i inventory
 
 ansible-config -> View Ansible configuration
+
 ansible-console -> REPL console for executing Ansible tasks.
+
 ansible-doc -> plugin documentation tool
-ansible-galaxy -> Command to manage Ansible roles and collections.
+
+ansible-galaxy -> Command to manage Ansible roles and collections
+
 ansible-inventory -> used to display or dump the configured inventory as Ansible sees it
+
 ansible-pull -> Used to pull a remote copy of ansible on each managed node, each set to run via cron and update playbook source via a source repository. This inverts the default push architecture of ansible into a pull architecture, which has near-limitless scaling potential.
-ansible-vault -> can encrypt any structured data file used by Ansible. This can include group_vars/ or host_vars/ inventory variables, variables loaded by include_vars or vars_files, or variable files passed on the ansible-playbook command line with -e @file.yml or -e @file.json. Role variables and defaults are also included!
+
+ansible-vault -> can encrypt any structured data file used by Ansible. This can include group_vars/ or host_vars/ inventory variables, variables loaded by include_vars or vars_files, or variable files passed on the ansible-playbook command line with -e @file.yml or -e @file.json. Role variables and defaults are also included
 
 Because Ansible tasks, handlers, and other objects are data, these can also be encrypted with vault. If you’d like to not expose what variables you are using, you can keep an individual task file entirely encrypted.
 
-Example commands:
+__Example commands:__
+
 ansible localhost -m ansible.builtin.apt -a "name=apache2 state=present" -b -K
 
 Install httpd
 ansible-playbook gather_facts.yml -i inventory -u ec2-user -b --private-key <private_key>
 
-Running Playbooks on AWS (Dynamic Inventory)
+__Running Playbooks on AWS (Dynamic Inventory)__
+
 If you're using Ansible with AWS, you can integrate it with your infrastructure using the AWS dynamic inventory plugin or EC2 inventory plugin to query EC2 instances directly.
 
-Example setup in your inventory file:
+__Example setup in your inventory file:__
 
 yaml
 Copy code
@@ -147,3 +155,6 @@ Use this in the global space in playbook to ignore the errors if it occurs (yes)
 
 
 Can use register in conditions. Eg: if the isntallation of a software is successful, proceed with the configuration of the software.
+
+# Roles
+https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html
